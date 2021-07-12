@@ -71,8 +71,3 @@ object HappyNumbersAlts {
     nums.foldLeft(0)(_ + sq(_))
   }
 }
-
-
-// TODO
-// - memoize
-// - parallelize
