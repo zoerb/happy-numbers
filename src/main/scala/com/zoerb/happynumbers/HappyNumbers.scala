@@ -3,10 +3,6 @@ package com.zoerb.happynumbers
 
 object HappyNumbers {
 
-  def computeAllHappyNumbers(range: Range): Seq[Int] = {
-    range.filter(isHappyNumber)
-  }
-
   def isHappyNumber(i: Int): Boolean = {
     // Mask `i` to ensure the outer parameter can't be seen from the recursive function
     @annotation.tailrec
@@ -64,7 +60,7 @@ object HappyNumbersAlts {
       num /= 10
     }
 
-    digits
+    digits.toSeq
   }
 
   // Less clear, but iterates over seq once instead of twice.  Could otherwise

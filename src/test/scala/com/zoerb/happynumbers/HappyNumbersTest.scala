@@ -1,11 +1,11 @@
 package com.zoerb.happynumbers
 
-import org.scalatest._
+import org.scalatest.funsuite.AnyFunSuite
 
-import com.zoerb.happynumbers.HappyNumbers._
+import com.zoerb.happynumbers.HappyNumbers.isHappyNumber
 
 
-class HappyNumbersTest extends FunSuite {
+class HappyNumbersTest extends AnyFunSuite {
   val allHappys = Seq(
     1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49, 68, 70, 79, 82, 86, 91, 94, 97,
     100, 103, 109, 129, 130, 133, 139, 167, 176, 188, 190, 192, 193, 203, 208,
@@ -21,7 +21,7 @@ class HappyNumbersTest extends FunSuite {
 
   test("all happy numbers 1 to 1000") {
     assertResult(allHappys)(
-      computeAllHappyNumbers(1 to 1000)
+      (1 to 1000).filter(isHappyNumber)
     )
   }
 
