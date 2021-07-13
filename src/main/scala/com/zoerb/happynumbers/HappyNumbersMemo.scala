@@ -15,7 +15,7 @@ class HappyNumbersMemo {
   private val happyCache = new mutable.HashSet[Int]
   private val unhappyCache = new mutable.HashSet[Int]
 
-  def isHappyNumber(i: Int): Boolean = {
+  def isHappyNumber(num: Int): Boolean = {
     @annotation.tailrec
     def recur(i: Int, visited: Set[Int]): Boolean = {
       if (i == 1 || happyCache.contains(i)) {
@@ -29,6 +29,6 @@ class HappyNumbersMemo {
       }
     }
 
-    recur(i, Set())
+    recur(num, Set())
   }
 }

@@ -3,8 +3,7 @@ package com.zoerb.happynumbers
 
 object HappyNumbers {
 
-  def isHappyNumber(i: Int): Boolean = {
-    // Mask `i` to ensure the outer parameter can't be seen from the recursive function
+  def isHappyNumber(num: Int): Boolean = {
     @annotation.tailrec
     def recur(i: Int, visited: Set[Int]): Boolean = {
       if (i == 1)
@@ -15,21 +14,21 @@ object HappyNumbers {
         recur(calculateDigitSquareSum(i), visited + i)
     }
 
-    recur(i, Set())
+    recur(num, Set())
   }
 
-  def calculateDigitSquareSum(i: Int): Int = {
-    sumOfSquares(splitIntoDigits(i))
+  def calculateDigitSquareSum(num: Int): Int = {
+    sumOfSquares(splitIntoDigits(num))
   }
 
-  def splitIntoDigits(i: Int): Seq[Int] = {
+  def splitIntoDigits(num: Int): Seq[Int] = {
     @annotation.tailrec
     def recur(i: Int, digits: List[Int]): List[Int] = {
       if (i == 0) digits
       else recur(i / 10, i % 10 +: digits)
     }
 
-    recur(i, List())
+    recur(num, List())
   }
 
   def sumOfSquares(nums: Seq[Int]): Int = {
@@ -44,20 +43,20 @@ object HappyNumbersAlts {
   // Concise, but conceptually impure, doesn't work with negatives, dependent on toString
   // output (e.g. what if a version of toString separated digit triples by commas).  Also
   // - admittedly getting increasingly pedantic here - it's limited to base 10 numbers.
-  def splitIntoDigits_toString(i: Int): Seq[Int] = {
-    require(i >= 0)
-    i.toString.map(_.asDigit)
+  def splitIntoDigits_toString(num: Int): Seq[Int] = {
+    require(num >= 0)
+    num.toString.map(_.asDigit)
   }
 
-  def splitIntoDigits_iterative(i: Int): Seq[Int] = {
+  def splitIntoDigits_iterative(num: Int): Seq[Int] = {
     import scala.collection.mutable.ListBuffer
 
-    var num = i
+    var i = num
     val digits = ListBuffer[Int]()
 
-    while (num != 0) {
-      digits.prepend(num % 10)
-      num /= 10
+    while (i != 0) {
+      digits.prepend(i % 10)
+      i /= 10
     }
 
     digits.toSeq
